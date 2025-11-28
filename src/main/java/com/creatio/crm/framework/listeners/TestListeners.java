@@ -1,21 +1,37 @@
 package com.creatio.crm.framework.listeners;
 
+import java.io.IOException;
+
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class TestListeners {
+import com.creatio.crm.framework.base.BasePage;
+import com.creatio.crm.framework.reports.Reports;
+import com.creatio.crm.framework.web.commons.WebCommons;
+
+public class TestListeners extends Reports implements ITestListener {
+	
+	String testName;
 	
 	public void onTestStart(ITestResult result) {
-		System.out.println("Test Execution started: " + result.getName());
+		testName = result.getMethod().getMethodName();
+		startReporting(testName);
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		System.out.println("Test Executed successfully: " + result.getName());
+		logger.pass("Test Executed successfully: " + testName);
+		endReporting();
 	}
 
 	public void onTestFailure(ITestResult result) {
-		System.out.println("Test Execution failed: " + result.getName());
-		System.out.println("Failure Reason: " + result.getThrowable().getLocalizedMessage());
-		System.out.println("Taking screenshot for failed test case: " + result.getName());
+		logger.fail("Test Execution failed: " + testName);
+		logger.fail("Failure Reason: " + result.getThrowable().getLocalizedMessage());
+		try {
+			logger.addScreenCaptureFromPath(WebCommons.getWindowScreenshot(BasePage.getDriver(), testName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		endReporting();	
 	}
 
 }

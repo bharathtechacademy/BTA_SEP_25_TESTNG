@@ -1,5 +1,11 @@
 package com.creatio.crm.application.steps;
 
-public class HomePageSteps {
+import com.creatio.crm.application.elements.HomePageElements;
+
+public class HomePageSteps extends HomePageElements{
+	
+	public void verifyHomePageDisplayed() {
+		isElementDisplayed(homePageHeader);
+	}
 
 }
