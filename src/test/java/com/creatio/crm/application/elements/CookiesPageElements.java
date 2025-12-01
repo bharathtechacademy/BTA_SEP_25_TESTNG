@@ -1,6 +1,5 @@
 package com.creatio.crm.application.elements;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,13 +7,43 @@ import com.creatio.crm.framework.web.commons.WebCommons;
 
 public class CookiesPageElements extends WebCommons{
 	
-	public WebElement cookiesPopupHeader = driver.findElement(By.xpath("//div[@class='cookie-popup__header']"));
+	@FindBy(xpath = "//div[@id='CybotCookiebotDialogBodyContentTitle']")
+	public WebElement cookiesHeader;
 	
-	public WebElement allowAllCookiesBtn = driver.findElement(By.xpath("//button[@class='cookie-popup__accept-btn']"));
+	@FindBy(xpath = "//div[@id='CybotCookiebotDialogBodyContentText']")
+	public WebElement cookiesContent;
 	
-	public WebElement denyCookiesBtn = driver.findElement(By.xpath("//button[@class='cookie-popup__deny-btn']"));
+	@FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']")
+	public WebElement allowAllButton;
 	
-	@FindBy(xpath="//a[@class='cookie-popup__settings-link']")
-	public WebElement cookiesPopupHeaderElement;
+	@FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection']")
+	public WebElement allowSelectionButton;
+	
+	@FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
+	public WebElement denyButton;
+	
+	@FindBy(xpath = "//input[@id='CybotCookiebotDialogBodyLevelButtonNecessary']")
+	public WebElement necessarySwitchButton;
+	
+	@FindBy(xpath = "//input[@id='CybotCookiebotDialogBodyLevelButtonPreferences']")
+	public WebElement preferencesSwitchButton;
+	
+	@FindBy(xpath = "//input[@id='CybotCookiebotDialogBodyLevelButtonStatistics']")
+	public WebElement statisticsSwitchButton;
+	
+	@FindBy(xpath = "//input[@id='CybotCookiebotDialogBodyLevelButtonMarketing']")
+	public WebElement marketingSwitchButton;
+	
+	@FindBy(xpath = "//a[@id='CybotCookiebotDialogBodyEdgeMoreDetailsLink']")
+	public WebElement showDetailsLink;
+	
+	@FindBy(xpath = "//img[@id='CybotCookiebotDialogPoweredbyImage']")
+	public WebElement creatioLogo;
+	
+	@FindBy(xpath = "//a[@id='CybotCookiebotDialogPoweredbyCybot']")
+	public WebElement cookieBotLogo;
+	
+	@FindBy(xpath = "//a[@id='CybotCookiebotDialogNavDetails']")
+	public WebElement cokkiesPopUpExpandedView;
 
 }

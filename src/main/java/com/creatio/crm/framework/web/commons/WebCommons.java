@@ -20,6 +20,7 @@ import org.testng.Assert;
 
 import com.creatio.crm.framework.base.BasePage;
 import com.creatio.crm.framework.constants.Web;
+import com.creatio.crm.framework.reports.Reports;
 import com.creatio.crm.framework.utilities.PropUtil;
 
 public class WebCommons {
@@ -247,6 +248,21 @@ public class WebCommons {
 	// Common method to switch back to main window from frame.
 	public void switchToMainWindow() {
 		driver.switchTo().defaultContent();
+	}
+	
+	// Common method to print message in extent reports
+	public void log(String status, String message) {
+		if(status.equalsIgnoreCase("info")) {
+			Reports.logger.info(message);
+		} else if(status.equalsIgnoreCase("pass")) {
+			Reports.logger.pass(message);
+		} else if(status.equalsIgnoreCase("fail")) {
+			Reports.logger.fail(message);
+		} else if(status.equalsIgnoreCase("warning")) {
+			Reports.logger.warning(message);
+		} else {
+			Reports.logger.info(message);
+		}
 	}
 
 }
